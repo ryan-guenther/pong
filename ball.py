@@ -1,9 +1,30 @@
 import turtle
+from random import randint
 
 COLOR = "white"
 SHAPE = "circle"
 MOVEMENT = 10
 SPEED = "fastest"
+
+def random_direction():
+    value = randint(0, 1)
+    if value == 0:
+        return MOVEMENT
+    else:
+        return -MOVEMENT
+
+def random_angle(current_direction = None):
+    if current_direction is None:
+        value = random_direction()
+    else:
+        value = current_direction
+
+    y_value = randint(3,10)
+
+    if value > 0:
+        return y_value
+    else:
+        return -y_value
 
 class Ball(turtle.Turtle):
     def __init__(self):
@@ -13,8 +34,8 @@ class Ball(turtle.Turtle):
         self.color(COLOR)
         self.speed(SPEED)
 
-        self.x_movement = 10
-        self.y_movement = 10
+        self.x_movement = random_direction()
+        self.y_movement = random_angle()
 
 
     def move(self):
@@ -30,5 +51,9 @@ class Ball(turtle.Turtle):
     def paddle_bounce(self):
         self.x_movement *= -1
 
+
     def reset(self):
+        # When resetting then the ball should start the other direction
+        self.paddle_bounce()
+        self.y_movement = random_angle(self.y_movement)
         self.goto(0,0)
