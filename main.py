@@ -50,12 +50,12 @@ left_scoreboard = Scoreboard(-SCOREBOARD_X_POS, SCOREBOARD_Y_POS)
 right_scoreboard = Scoreboard(SCOREBOARD_X_POS, SCOREBOARD_Y_POS)
 
 # Left Paddle Key Events
-game_screen.onkey(left_paddle.move_up, LEFT_PADDLE_KEYUP)
-game_screen.onkey(left_paddle.move_down, LEFT_PADDLE_KEYDOWN)
+game_screen.onkeypress(left_paddle.move_up, LEFT_PADDLE_KEYUP)
+game_screen.onkeypress(left_paddle.move_down, LEFT_PADDLE_KEYDOWN)
 
 # Right Paddle Key Events
-game_screen.onkey(right_paddle.move_up, RIGHT_PADDLE_KEYUP)
-game_screen.onkey(right_paddle.move_down, RIGHT_PADDLE_KEYDOWN)
+game_screen.onkeypress(right_paddle.move_up, RIGHT_PADDLE_KEYUP)
+game_screen.onkeypress(right_paddle.move_down, RIGHT_PADDLE_KEYDOWN)
 
 # Start the game
 game_on = True
@@ -84,9 +84,5 @@ while game_on:
 
 
         ball.reset()
-
-
-# TODO add Scoring for ball when passes sides of walls
-# TODO Configure and setup Scoreboard
 
 game_screen.exitonclick()

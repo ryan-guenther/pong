@@ -17,8 +17,10 @@ class GameScreen:
     def exitonclick(self):
         self.screen.exitonclick()
 
-    def onkey(self, fun, key):
-        self.screen.onkey(fun, key)
+
+    def onkeypress(self, fun, key):
+        self.screen.onkeypress(fun, key)
+
 
     def update(self):
         self.screen.update()
