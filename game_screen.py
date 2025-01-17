@@ -13,8 +13,14 @@ class GameScreen:
         self.screen.title(GAME_TITLE)
         self.screen.listen()
 
+        # Remove the Tracer, now need to update the screen manually
+        self.screen.tracer(0)
+
     def exitonclick(self):
         self.screen.exitonclick()
 
     def onkey(self, fun, key):
         self.screen.onkey(fun, key)
+
+    def update(self):
+        self.screen.update()

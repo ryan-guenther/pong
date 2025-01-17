@@ -1,10 +1,38 @@
 from game_screen import GameScreen
+from paddle import Paddle
+from time import sleep
+
+GAME_SPEED = 0.1
+LEFT_PADDLE_POS = (-350, 0)
+RIGHT_PADDLE_POS = (350, 0)
+
+LEFT_PADDLE_KEYUP = "w"
+LEFT_PADDLE_KEYDOWN = "d"
+
+RIGHT_PADDLE_KEYUP = "Up"
+RIGHT_PADDLE_KEYDOWN = "Down"
 
 # Create the game screen
 game_screen = GameScreen()
 
-# TODO Setup the Paddles and Render on Screen
-# TODO Enable key events to listen on paddle movement and move up and down
+# Create the paddles on the screen
+left_paddle = Paddle(LEFT_PADDLE_POS)
+right_paddle = Paddle(RIGHT_PADDLE_POS)
+
+# Left Paddle Key Events
+game_screen.onkey(left_paddle.move_up, LEFT_PADDLE_KEYUP)
+game_screen.onkey(left_paddle.move_down, LEFT_PADDLE_KEYDOWN)
+
+# Right Paddle Key Events
+game_screen.onkey(right_paddle.move_up, RIGHT_PADDLE_KEYUP)
+game_screen.onkey(right_paddle.move_down, RIGHT_PADDLE_KEYDOWN)
+
+game_on = True
+
+while game_on:
+    game_screen.update()
+    sleep(GAME_SPEED)
+
 
 # TODO Setup the Ball which will move on the screen
 
