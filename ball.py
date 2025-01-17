@@ -49,11 +49,15 @@ class Ball(turtle.Turtle):
 
 
     def paddle_bounce(self):
-        self.x_movement *= -1
+        self.x_movement *= -1.25
 
 
     def reset(self):
-        # When resetting then the ball should start the other direction
-        self.paddle_bounce()
+        # Reset Speed and Switch Directions
+        if self.x_movement < 0:
+            self.x_movement = MOVEMENT
+        else:
+            self.x_movement = -MOVEMENT
+
         self.y_movement = random_angle(self.y_movement)
         self.goto(0,0)
