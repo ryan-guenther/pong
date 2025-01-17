@@ -1,14 +1,12 @@
 from turtle import Screen
 
-SCREEN_WIDTH = 800
-SCREEN_HEIGHT = 600
 SCREEN_COLOR = "black"
 GAME_TITLE = "Pong"
 
 class GameScreen:
-    def __init__(self):
+    def __init__(self, width, height):
         self.screen = Screen()
-        self.screen.setup(width=SCREEN_WIDTH, height=SCREEN_HEIGHT)
+        self.screen.setup(width=width, height=height)
         self.screen.bgcolor(SCREEN_COLOR)
         self.screen.title(GAME_TITLE)
         self.screen.listen()
