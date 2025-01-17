@@ -2,6 +2,7 @@ from game_screen import GameScreen
 from paddle import Paddle
 from time import sleep
 from ball import Ball
+from scoreboard import Scoreboard
 
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
@@ -26,6 +27,11 @@ LEFT_PADDLE_KEYDOWN = "s"
 RIGHT_PADDLE_KEYUP = "Up"
 RIGHT_PADDLE_KEYDOWN = "Down"
 
+SCOREBOARD_X_POS = SCREEN_WIDTH // 4
+SCOREBOARD_Y_POS = SCREEN_HEIGHT // 2 - 80
+
+print(SCOREBOARD_X_POS, SCOREBOARD_Y_POS)
+
 # Wall is Ball Width away from the top or bottom
 WALL_POS = SCREEN_HEIGHT / 2 - 20
 
@@ -38,6 +44,10 @@ right_paddle = Paddle(RIGHT_PADDLE_POS)
 
 # Add the Ball
 ball = Ball()
+
+# Add the Scoreboards
+left_scoreboard = Scoreboard(-SCOREBOARD_X_POS, SCOREBOARD_Y_POS)
+right_scoreboard = Scoreboard(SCOREBOARD_X_POS, SCOREBOARD_Y_POS)
 
 # Left Paddle Key Events
 game_screen.onkey(left_paddle.move_up, LEFT_PADDLE_KEYUP)
@@ -65,6 +75,14 @@ while game_on:
 
     # Reset Ball if Score Zone Hit
     if abs(ball.xcor()) > SCORE_BOUNDARY_POS:
+
+        # if the xcor is in the negative right paddle scored
+        if ball.xcor() < 0:
+            right_scoreboard.add_point()
+        else:
+            left_scoreboard.add_point()
+
+
         ball.reset()
 
 
